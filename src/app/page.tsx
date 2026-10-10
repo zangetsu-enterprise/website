@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 /* ---------- Data (all real & verifiable) ---------- */
 
@@ -8,7 +8,9 @@ const STATS = [
   { value: "25+", label: "Projects built" },
   { value: "59", label: "GitHub repositories" },
   { value: "100", label: "Digital products" },
+  { value: "15+", label: "Live demos" },
   { value: "6", label: "Micro-SaaS live" },
+  { value: "8", label: "AI tools shipped" },
 ];
 
 const PRODUCTS = [
@@ -75,6 +77,78 @@ const PRODUCTS = [
     live: "https://zangetsu-enterprise-afk.netlify.app/",
     repo: "https://github.com/zangetsu-enterprise",
     accent: "#f0c75e",
+  },
+  {
+    name: "Site Auditor AI",
+    tagline: "Professional website audits in seconds — SEO, accessibility, performance.",
+    category: "AI Tool",
+    live: "https://site-auditor-7r3a4uln6-carlosreyesafks-projects.vercel.app",
+    repo: "https://github.com/carlosreyesafk/site-auditor-ai",
+    accent: "#4e7dd4",
+  },
+  {
+    name: "Code Sensei",
+    tagline: "Instant senior-level code review in your browser — paste code, get feedback.",
+    category: "AI Tool",
+    live: "https://code-sensei-rlkhu3q52-carlosreyesafks-projects.vercel.app",
+    repo: "https://github.com/carlosreyesafk/code-sensei",
+    accent: "#a78bfa",
+  },
+  {
+    name: "Smart Doc Chat",
+    tagline: "Chat with your PDFs — 100% private, runs entirely in your browser.",
+    category: "AI Tool",
+    live: "https://smart-doc-chat-6uxe4ybq0-carlosreyesafks-projects.vercel.app",
+    repo: "https://github.com/carlosreyesafk/smart-doc-chat",
+    accent: "#34d399",
+  },
+  {
+    name: "Data Talk",
+    tagline: "Talk to your CSV — upload data, ask questions in plain language.",
+    category: "AI Tool",
+    live: "https://data-talk-chachi.vercel.app",
+    repo: "https://github.com/carlosreyesafk/data-talk",
+    accent: "#22d3ee",
+  },
+  {
+    name: "AI Landing Generator",
+    tagline: "Describe your business, get a complete landing page instantly.",
+    category: "AI Tool",
+    live: "https://ai-landing-generator-qnl2djir0-carlosreyesafks-projects.vercel.app",
+    repo: "https://github.com/carlosreyesafk/ai-landing-generator",
+    accent: "#f472b6",
+  },
+  {
+    name: "Voice to Action",
+    tagline: "Voice notes to action items — record, transcribe, organize.",
+    category: "AI Tool",
+    live: "https://voice-to-action-chachi.vercel.app",
+    repo: "https://github.com/carlosreyesafk/voice-to-action",
+    accent: "#fbbf24",
+  },
+  {
+    name: "CVForge",
+    tagline: "Resume builder with live preview — professional CVs in minutes.",
+    category: "Tool",
+    live: "https://carlosreyesafk.github.io/cvforge/",
+    repo: "https://github.com/carlosreyesafk/cvforge",
+    accent: "#d4a94e",
+  },
+  {
+    name: "TeardownPro",
+    tagline: "Conversion teardowns for SaaS landing pages — see what works.",
+    category: "Tool",
+    live: "https://carlosreyesafk.github.io/teardownpro/",
+    repo: "https://github.com/carlosreyesafk/teardownpro",
+    accent: "#7aa5f0",
+  },
+  {
+    name: "Vigia Web",
+    tagline: "Uptime + SSL monitoring with crypto payments.",
+    category: "Tool",
+    live: "https://vigia-web-rust.vercel.app",
+    repo: "https://github.com/carlosreyesafk/vigia-web",
+    accent: "#34d399",
   },
 ];
 
@@ -184,7 +258,7 @@ function Hero() {
 function Stats() {
   return (
     <section className="border-y border-white/5 bg-white/[0.015]">
-      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-5 py-12 md:grid-cols-4">
+      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-5 py-12 md:grid-cols-3 lg:grid-cols-6">
         {STATS.map((s) => (
           <div key={s.label} className="text-center">
             <div className="text-4xl font-black text-gradient-gold md:text-5xl">
@@ -208,7 +282,7 @@ function Products() {
   return (
     <section id="products" className="mx-auto max-w-6xl scroll-mt-24 px-5 py-20 md:py-28">
       <div className="mb-4 text-xs font-bold tracking-[0.25em] text-[#d4a94e] uppercase">
-        Portfolio
+        Our Work
       </div>
       <h2 className="text-3xl font-black md:text-5xl">
         Products that <span className="text-gradient-blue">ship</span>
@@ -269,6 +343,142 @@ function Products() {
             </div>
           </article>
         ))}
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Ecosystem: decorative network visualization ---------- */
+
+const ECOSYSTEM_NODES = [
+  { label: "Zangetsu", x: 50, y: 50, r: 14, color: "#f0c75e", main: true },
+  { label: "Micro-SaaS", x: 22, y: 28, r: 9, color: "#4e7dd4" },
+  { label: "AI Tools", x: 78, y: 26, r: 9, color: "#a78bfa" },
+  { label: "Dev Tools", x: 20, y: 72, r: 9, color: "#34d399" },
+  { label: "Digital Products", x: 80, y: 74, r: 9, color: "#f472b6" },
+  { label: "CobraYa", x: 50, y: 82, r: 7, color: "#22d3ee" },
+  { label: "PriceHawk", x: 12, y: 18, r: 5, color: "#4e7dd4" },
+  { label: "ContractKit", x: 32, y: 16, r: 5, color: "#d4a94e" },
+  { label: "HireWire", x: 14, y: 40, r: 5, color: "#34d399" },
+  { label: "Site Auditor", x: 88, y: 16, r: 5, color: "#4e7dd4" },
+  { label: "Code Sensei", x: 68, y: 14, r: 5, color: "#a78bfa" },
+  { label: "Smart Doc", x: 90, y: 38, r: 5, color: "#34d399" },
+  { label: "CVForge", x: 10, y: 62, r: 5, color: "#d4a94e" },
+  { label: "Vigia Web", x: 30, y: 84, r: 5, color: "#34d399" },
+  { label: "Gumroad", x: 70, y: 86, r: 5, color: "#f472b6" },
+  { label: "TeardownPro", x: 90, y: 62, r: 5, color: "#7aa5f0" },
+];
+
+function Ecosystem() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let raf = 0;
+    let t = 0;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    resize();
+    window.addEventListener("resize", resize);
+
+    const draw = () => {
+      t += 0.008;
+      const w = canvas.getBoundingClientRect().width;
+      const h = canvas.getBoundingClientRect().height;
+      ctx.clearRect(0, 0, w, h);
+
+      const pts = ECOSYSTEM_NODES.map((n) => ({
+        ...n,
+        px: (n.x / 100) * w + Math.sin(t * 1.3 + n.x) * 6,
+        py: (n.y / 100) * h + Math.cos(t * 1.1 + n.y) * 6,
+      }));
+
+      // connections
+      const main = pts[0];
+      pts.slice(1).forEach((p) => {
+        const isHub = p.r >= 9;
+        const target = isHub ? main : pts.find((q) => q.r >= 9 && Math.hypot(q.px - p.px, q.py - p.py) < w * 0.45) || main;
+        ctx.beginPath();
+        ctx.moveTo(main.px, main.py);
+        ctx.lineTo(p.px, p.py);
+        ctx.strokeStyle = isHub ? "rgba(212,169,78,0.25)" : "rgba(255,255,255,0.07)";
+        ctx.lineWidth = isHub ? 1.5 : 1;
+        ctx.stroke();
+        if (target !== main) {
+          ctx.beginPath();
+          ctx.moveTo(target.px, target.py);
+          ctx.lineTo(p.px, p.py);
+          ctx.strokeStyle = "rgba(255,255,255,0.05)";
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      });
+
+      // nodes
+      pts.forEach((p) => {
+        const glow = p.main ? 18 : p.r >= 9 ? 10 : 5;
+        const grad = ctx.createRadialGradient(p.px, p.py, 0, p.px, p.py, p.r + glow);
+        grad.addColorStop(0, p.color);
+        grad.addColorStop(1, "transparent");
+        ctx.beginPath();
+        ctx.arc(p.px, p.py, p.r + glow, 0, Math.PI * 2);
+        ctx.fillStyle = grad;
+        ctx.globalAlpha = 0.25;
+        ctx.fill();
+        ctx.globalAlpha = 1;
+
+        ctx.beginPath();
+        ctx.arc(p.px, p.py, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+
+        if (p.r >= 7) {
+          ctx.font = `${p.main ? "bold 13px" : "11px"} system-ui, sans-serif`;
+          ctx.textAlign = "center";
+          ctx.fillStyle = p.main ? "#f0c75e" : "rgba(255,255,255,0.65)";
+          ctx.fillText(p.label, p.px, p.py + p.r + 16);
+        }
+      });
+
+      raf = requestAnimationFrame(draw);
+    };
+    draw();
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
+
+  return (
+    <section className="border-y border-white/5 bg-white/[0.015]">
+      <div className="mx-auto max-w-6xl px-5 py-20 md:py-28">
+        <div className="mb-4 text-center text-xs font-bold tracking-[0.25em] text-[#d4a94e] uppercase">
+          Our Ecosystem
+        </div>
+        <h2 className="text-center text-3xl font-black md:text-5xl">
+          One network, <span className="text-gradient-gold">many products</span>
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-center text-[#8a8aa3]">
+          Every node is a real, live product. This is how a digital holding
+          company compounds — each product feeds the next.
+        </p>
+        <div className="card mt-10 overflow-hidden p-2">
+          <canvas ref={canvasRef} className="h-[320px] w-full md:h-[440px]" />
+        </div>
+        <p className="mt-4 text-center text-xs text-[#55556a]">
+          Live visualization of the Zangetsu Enterprise product network
+        </p>
       </div>
     </section>
   );
@@ -486,6 +696,7 @@ export default function Home() {
       <Hero />
       <Stats />
       <Products />
+      <Ecosystem />
       <Services />
       <Founder />
       <Contact />
