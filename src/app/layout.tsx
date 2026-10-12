@@ -2,18 +2,18 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Zangetsu Enterprise — Building the future, one product at a time",
+  title: "Zangetsu — Building the future, one product at a time",
   description:
-    "Zangetsu Enterprise is a digital holding company: AI micro-SaaS, developer tools, and digital products. Led by Carlos Reyes, Systems Engineer & AI-assisted developer.",
+    "Zangetsu is a digital holding company: AI micro-SaaS, developer tools, and digital products. Led by Carlos Reyes, Systems Engineer & AI-assisted developer.",
   keywords: [
-    "Zangetsu Enterprise",
+    "Zangetsu",
     "micro-SaaS",
     "AI development",
     "digital products",
     "software development",
   ],
   openGraph: {
-    title: "Zangetsu Enterprise",
+    title: "Zangetsu",
     description: "Building the future, one product at a time.",
     type: "website",
   },
