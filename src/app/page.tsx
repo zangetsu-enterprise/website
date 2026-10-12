@@ -74,7 +74,7 @@ const PRODUCTS = [
     name: "Zangetsu Brain",
     tagline: "The command center — a 3D neural visualization of every business, project and metric.",
     category: "Platform",
-    live: "https://zangetsu-enterprise-afk.netlify.app/",
+    live: "https://zangetsu-site.netlify.app/",
     repo: "https://github.com/zangetsu-enterprise",
     accent: "#f0c75e",
   },
@@ -198,7 +198,7 @@ function Nav() {
             Z
           </div>
           <span className="text-sm font-bold tracking-[0.2em] uppercase">
-            Zangetsu <span className="text-gradient-gold">Enterprise</span>
+            <span className="text-gradient-gold">Zangetsu</span>
           </span>
         </a>
         <div className="hidden items-center gap-8 text-sm text-[#8a8aa3] md:flex">
@@ -227,7 +227,7 @@ function Hero() {
           Digital holding company — Est. 2026
         </div>
         <h1 className="text-5xl font-black tracking-tight md:text-7xl">
-          Zangetsu <span className="text-gradient-gold">Enterprise</span>
+          <span className="text-gradient-gold">Zangetsu</span>
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-lg text-[#8a8aa3] md:text-xl">
           Building the future,{" "}
@@ -477,7 +477,7 @@ function Ecosystem() {
           <canvas ref={canvasRef} className="h-[320px] w-full md:h-[440px]" />
         </div>
         <p className="mt-4 text-center text-xs text-[#55556a]">
-          Live visualization of the Zangetsu Enterprise product network
+          Live visualization of the Zangetsu product network
         </p>
       </div>
     </section>
@@ -541,7 +541,7 @@ function Founder() {
             Systems & Computer Engineer · AI-assisted developer
           </p>
           <p className="mt-5 leading-relaxed text-[#c9c9d9]">
-            Carlos founded Zangetsu Enterprise to build software the way it
+            Carlos founded Zangetsu to build software the way it
             should be built in the AI era — fast, focused, and shipped. Every
             product in the portfolio is designed and engineered by him using
             AI-assisted development workflows, from concept to production
@@ -581,7 +581,7 @@ function Contact() {
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`[Zangetsu Enterprise] Inquiry from ${form.name}`);
+    const subject = encodeURIComponent(`[Zangetsu] Inquiry from ${form.name}`);
     const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
     window.location.href = `mailto:carlosreyesafk@gmail.com?subject=${subject}&body=${body}`;
     setSent(true);
@@ -666,7 +666,7 @@ function Footer() {
               Z
             </div>
             <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#8a8aa3]">
-              Zangetsu Enterprise
+              Zangetsu
             </span>
           </div>
           <div className="flex gap-6 text-sm text-[#8a8aa3]">
@@ -676,12 +676,12 @@ function Footer() {
             <a href="https://www.linkedin.com/in/carlosreyesafk/" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">
               LinkedIn
             </a>
-            <a href="https://zangetsu-enterprise-afk.netlify.app/" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">
+            <a href="https://zangetsu-site.netlify.app/" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">
               Command Center
             </a>
           </div>
           <p className="text-xs text-[#55556a]">
-            © 2026 Zangetsu Enterprise. Building the future, one product at a time.
+            © 2026 Zangetsu. Building the future, one product at a time.
           </p>
         </div>
       </div>
